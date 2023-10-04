@@ -1,27 +1,38 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
     <link rel="stylesheet" type="text/css" href="/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
-    />
-  </head>
-  <body>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+</head>
+<body>
     <div class="container">
-      <h1>Weather App using NodeJS</h1>
-      <form action="/weather" method="get">
-        <input type="text" name="city" placeholder="Enter city name" />
-        <button type="submit">Get Weather</button>
-      </form>
-      <% if (error) { %>
-      <p class="error"><%= error %></p>
-      <% } else if (weather) { %>
-      <div class="card">
-        <!-- Add your weather data here -->
-      </div>
-      <% } %>
+        <h1 class="title">Weather App using NodeJS</h1>
+        <form action="/weather" method="get" class="search-form">
+            <input type="text" name="city" placeholder="Enter city name" class="search-input" id="cityInput" />
+            <button type="submit" class="search-button">Get Weather</button>
+        </form>
+        <% if (error) { %>
+        <p class="error"><%= error %></p>
+        <% } else if (weather) { %>
+        <div class="card">
+            <div class="weather-icon">
+                <i class="fas fa-thermometer-half fa-4x"></i> <!-- Larger icon -->
+            </div>
+            <p class="temperature">
+                <%= weather.main.temp %>&deg;F
+            </p>
+            <p class="condition">
+                <%= weather.weather[0].description %>
+            </p>
+            <p class="location">
+                <%= weather.name %>, <%= weather.sys.country %>
+            </p>
+        </div>
+        <% } %>
     </div>
-  </body>
+    <div class="sun"></div> <!-- Sun animation background -->
+</body>
 </html>
